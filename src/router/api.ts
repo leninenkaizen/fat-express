@@ -1,10 +1,10 @@
 import { Router, Request, Response } from 'express';
 
-const router = Router()
+const API = Router()
 
-router.get('/', (req: Request, res: Response) => {
-    console.log(`request IP: ${req.ip}`);
-    res.json({"lenin" : "Name"});
+API.get('/', (req: Request, res: Response) => {
+    res.json({user_ip: req.ip, queries : req.query});
 })
 
-export default router;
+
+export default API;
