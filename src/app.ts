@@ -1,12 +1,14 @@
 import './settings.ts'
-import Express, { Request, Response } from 'express';
+import Express from 'express';
+import {initializeRouter} from "@src/router";
 
 const app = Express();
 
-app.get('/', (req: Request, res: Response) => {
-    console.log(req);
-    res.json({"lenin" : "Name"});
-})
+/**
+ * initializing router
+ */
+initializeRouter(app);
+
 
 /**
  * Starting application server
