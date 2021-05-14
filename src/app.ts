@@ -1,3 +1,4 @@
+import './settings.ts'
 import Express, { Request, Response } from 'express';
 
 const app = Express();
@@ -7,4 +8,8 @@ app.get('/', (req: Request, res: Response) => {
     res.json({"lenin" : "Name"});
 })
 
-app.listen(8000, () => console.log("Server started at localhost:3000"));
+/**
+ * Starting application server
+ */
+const port = process.env.APP_PORT ?? 3000
+app.listen(port, () => console.log(`Server started at localhost:${port}`));
