@@ -1,10 +1,14 @@
 import { Router, Request, Response } from 'express';
+import validationExample from "@src/validator/validations/validationExample";
 
-const API = Router()
+const api = Router()
 
-API.get('/', (req: Request, res: Response) => {
+api.get('/', (req: Request, res: Response) => {
     res.json({user_ip: req.ip, queries : req.query});
-})
+});
 
+api.post('/', validationExample, (req: Request, res: Response) => {
+    res.json(req.body);
+});
 
-export default API;
+export default api;

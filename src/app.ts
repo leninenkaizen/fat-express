@@ -1,8 +1,15 @@
 import './settings.ts'
 import Express from 'express';
+import BodyParser from 'body-parser';
 import {initializeRouter} from "@src/router";
 
 const app = Express();
+
+/**
+ * registering body-parser (urlencoded and json)
+ */
+app.use(BodyParser.urlencoded({extended: false}), BodyParser.json());
+
 
 /**
  * initializing router
