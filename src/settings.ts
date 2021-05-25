@@ -11,11 +11,16 @@ require('dotenv').config();
  * applications sourcePath
  * @var src
  */
-const src = path.dirname(process.mainModule!.filename)
+const srcFolderName = require.main?.path;
 
-/**
- * registering module aliases
- */
-md.addAliases({
-    '@src' : src
-})
+if (srcFolderName) {
+    const src = path.dirname(srcFolderName);
+    /**
+     * registering module aliases
+     */
+    md.addAliases({
+        '@src' : src
+    })
+} else {
+    throw new Error("Module alias initialization failed! require.main?.path returned undefined!")
+}
