@@ -6,5 +6,5 @@ import { body, ValidationChain } from 'express-validator';
  * @type {ValidationChain[]}
  */
 export default validator ( [
-    body('name', 'filed \'name\' can not be empty').not().isEmpty()
+    body('email', 'filed \'name\' can not be empty').not().isEmpty().isEmail()
 ]);
