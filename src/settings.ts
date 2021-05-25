@@ -7,14 +7,17 @@ const md = require('module-alias');
  */
 require('dotenv').config();
 
-/**
- * applications sourcePath
- * @var src
- */
+
 const srcFolderName = require.main?.path;
 
 if (srcFolderName) {
+    /**
+     * applications sourcePath
+     * @var src
+     */
     const src = path.dirname(srcFolderName);
+
+
     /**
      * registering module aliases
      */
