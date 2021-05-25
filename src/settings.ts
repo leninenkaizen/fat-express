@@ -1,4 +1,5 @@
-import path from 'path'
+import path from 'path';
+import "reflect-metadata";
 const md = require('module-alias');
 
 /**
