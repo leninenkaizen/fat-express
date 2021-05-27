@@ -1,0 +1,19 @@
+{
+  "type": "mysql",
+  "host": "localhost",
+  "port": 3306,
+  "username": "root",
+  "password": "aA111111",
+  "database": "express_plus",
+  "synchronize": true,
+  "logging": false,
+  "entities": [
+    "src/database/**/*.ts"
+  ],
+  "migrations": [
+    "src/database/migration/**/*.ts"
+  ],
+  "subscribers": [
+    "src/subscriber/**/*.ts"
+  ]
+}

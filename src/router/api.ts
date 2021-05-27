@@ -4,14 +4,18 @@ import {getUserRepository} from "@src/providers/DatabaseProvidor";
 
 const api = Router()
 
-// const userRepository = getUserRepository();
 
-api.get('/', (req: Request, res: Response) => {
-    res.json({user_ip: req.ip, queries : req.query});
+api.get('/', async (req: Request, res: Response) => {
+    const userRepository = getUserRepository();
+
+    const u = await userRepository.findByEmail('lenin@gmail.com')
+    res.json({user_ip: req.ip, user : u});
 });
 
 api.post('/', validationExample, async (req: Request, res: Response) => {
-    const user = getUserRepository().create({email: 'lenin@gmail.com'})
+    const userRepository = getUserRepository();
+
+    const user = await userRepository.create({email: 'lenin@gmail.com'})
     res.json({user: user});
 });
 

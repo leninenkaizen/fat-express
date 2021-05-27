@@ -1,12 +1,12 @@
 import {
     Entity,
     PrimaryGeneratedColumn,
-    Column
+    Column, BaseEntity
 } from "typeorm";
 import {IUser} from "@src/imodels/IUser";
 
-@Entity()
-export class User implements IUser {
+@Entity({name: 'users'})
+export class User extends BaseEntity implements IUser {
 
     @PrimaryGeneratedColumn()
     id: number;

@@ -3,17 +3,18 @@ import {EntityManager, EntityRepository, Repository} from "typeorm";
 import {User} from "@src/database/entities/User";
 import {IUser} from "@src/imodels/IUser";
 
+const model = User;
+
 @EntityRepository()
 export class UserRepository implements IUserRepository{
 
-    constructor(private manager: EntityManager, private model: User) {
-    }
+    constructor(private manager: EntityManager) {}
 
     /**
      * find user by email
      */
     async findByEmail(email: string): Promise<IUser | null> {
-        const user = await this.manager.findOne( User, {email: email});
+        const user = await this.manager.findOne( model, {email: email});
         return user ? user : null
     }
 
