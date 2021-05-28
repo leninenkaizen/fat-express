@@ -1,5 +1,5 @@
 import {Express, Router} from "express";
-import apiRouter from '@src/router/api'
+import apiRouter from '@src/router/api/auth'
 
 export const initializeRouter = (app: Express) => {
     const router = Router();

@@ -1,20 +1,16 @@
 import {IUserRepository} from "@src/database/repositories/interface/IUserRepository";
-import {getUserRepository} from "@src/providers/DatabaseProvidor";
+import { userRepo } from "@src/providers/DatabaseProvidor";
 import {Request, Response} from "express";
+import {Service} from "typedi";
 
 export class AuthController {
-    private userRepo: IUserRepository;
 
-    constructor() {
-    }
-    public async index(req: Request, res: Response) {
-        const users = await (await this.getUserRepo()).findByEmail('lenin@gmail.com')
+    public async user(req: Request, res: Response) {
+        const users = await userRepo().findByEmail('lenin@gmail.com')
+        res.json({user: users})
     }
 
-    private async getUserRepo() {
-        if (!this.userRepo) {
-            this.userRepo = await getUserRepository();
-        }
-        return this.userRepo;
+    public async register(req: Request, res: Response) {
+        res.json('okay');
     }
 }

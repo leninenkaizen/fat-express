@@ -6,7 +6,7 @@ import {
 import {IUser} from "@src/imodels/IUser";
 
 @Entity({name: 'users'})
-export class User extends BaseEntity implements IUser {
+export class User implements IUser {
 
     @PrimaryGeneratedColumn()
     id: number;

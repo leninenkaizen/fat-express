@@ -12,7 +12,7 @@ import {UserRepository} from "@src/database/repositories/typeorm/UserRepository"
  *
  * @return IUserRepository
  */
-export const getUserRepository = (): IUserRepository => {
+export const userRepo = (): IUserRepository => {
     // const connection: Connection = await createConnection();
     //todo:: switch concrete repository based on config
     return getCustomRepository(UserRepository)
