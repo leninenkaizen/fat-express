@@ -1,12 +1,12 @@
 import {userRepo} from "@src/providers/DatabaseProvidor";
-import {Request} from "express";
+import {throwValidationError} from "@src/validator/validator";
+
 
 
 export const isUserEmailUnique = async (value: string) => {
     if (await userRepo().findByEmail(value)) {
-        throw new Error(`email: ${value} has been taken`);
+        throwValidationError(`email: ${value} has been taken`)
     }
-    return  true;
 };
 
 

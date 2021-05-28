@@ -1,20 +1,23 @@
 import { Request, Response, NextFunction } from "express";
-
-import {validationResult, ValidationChain}  from "express-validator";
+import  {ObjectSchema, ValidationError} from 'joi'
 
 /**
  * validating the incoming request
- * @param validations
+ * @param validation
  */
-export default (validations: ValidationChain[]) => {
+
+export const validate = (validation: ObjectSchema) => {
     return async (req: Request, res: Response, next: NextFunction) => {
-        await Promise.all(validations.map((validation: ValidationChain) => validation.run(req)));
-
-        const errors = validationResult(req);
-        if (errors.isEmpty()) {
-            return next();
+        try {
+            await validation.validateAsync(req.body);
+            next();
+        } catch ( err) {
+            //error: ValidationError
+            res.status(422).json({errors: err.details[0].message})
         }
+    }
+}
 
-        res.status(422).json({ errors: errors.array() });
-    };
-};
+export const throwValidationError = (message: string) => {
+    throw new ValidationError('', [{message: message}], {});
+}

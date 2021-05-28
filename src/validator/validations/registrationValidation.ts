@@ -1,27 +1,15 @@
-import validator from '@src/validator/validator';
-import { body, ValidationChain } from 'express-validator';
+import { validate } from '@src/validator/validator';
 import {isPasswordConfirmed, isUserEmailUnique} from "@src/validator/rules";
+import Joi from "joi";
 
-/**
- * validation rule for user login
- * @type {ValidationChain[]}
- */
-export default validator ( [
-    body('email')
-        .not()
-        .isEmpty()
-        .isEmail()
-        .custom(isUserEmailUnique),
-    body('password', 'filed \'name\' can not be empty')
-        .not()
-        .isEmpty()
-        .isLength({min: 6}).custom(isPasswordConfirmed),
-    body('firstName')
-        .not()
-        .isEmpty()
-        .isLength({min: 6}),
-    body('lastName')
-        .not()
-        .isEmpty()
-        .isLength({min: 6})
-]);
+
+export default validate(Joi.object({
+    email: Joi.string().email().required().external(isUserEmailUnique),
+    password: Joi.string().required().min(6),
+    passwordConfirmation:  Joi.any().equal(Joi.ref('password'))
+        .required()
+        .label('Confirm password')
+        .options({ messages: { 'any.only': '{{#label}} does not match'} }),
+    firstName: Joi.string().required(),
+    lastName: Joi.string().required(),
+}))
