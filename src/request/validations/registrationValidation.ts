@@ -1,5 +1,5 @@
-import { validate } from '@src/validator/validator';
-import {isPasswordConfirmed, isUserEmailUnique} from "@src/validator/rules";
+import { validate } from '@src/request/validator';
+import {isPasswordConfirmed, isUserEmailUnique} from "@src/request/rules";
 import Joi from "joi";
 
 

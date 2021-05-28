@@ -1,5 +1,5 @@
 import {userRepo} from "@src/providers/DatabaseProvidor";
-import {throwValidationError} from "@src/validator/validator";
+import {throwValidationError} from "@src/request/validator";
 
 
 
