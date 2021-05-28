@@ -1,5 +1,14 @@
-##Manage schema and Entity (typeorm)
-
+#Fat Express
+###Project Setup
+####build
+``yarn build``
+####start
+``yarn start``
+####build and start
+``yarn serve``
+<br>
+<br>
+###Manage schema and Entity (typeorm)
 ####create new entity
 ``yarn orm entity:create -n EnityName``
 ####create new migration
