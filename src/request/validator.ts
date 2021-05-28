@@ -13,7 +13,7 @@ export const validate = (validation: ObjectSchema) => {
             next();
         } catch ( err) {
             //error: ValidationError
-            res.status(422).json({errors: err.details[0].message})
+            res.status(422).json({errors: err?.details[0].message})
         }
     }
 }

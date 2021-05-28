@@ -1,4 +1,4 @@
-import './settings.ts';
+import './settings';
 import "reflect-metadata";
 import Express from 'express';
 import BodyParser from 'body-parser';
